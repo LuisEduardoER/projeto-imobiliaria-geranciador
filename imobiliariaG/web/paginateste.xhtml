@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="css/css.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <div style="width: 924px; height: 500px; margin: 0 auto;">
+        <h:form id="form">
+            <div style="width: 924px; height: 500px; background: #AAA">
+            <table border="0" cellspacing="5" cellpadding="5">
+                <!--                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                </tr>-->
+                <ui:repeat var="image" value="#{paginaControle.dataList}">
+                    <!--                    <tr>
+                                            <td>#{item.id}</td>
+                                            <td>#{item.descricao}</td>
+                                            <td>#{item.codigo}</td>
+                                        </tr>-->
+                    <div class="imoveisCentro1">
+                        <p:graphicImage value="../imagensDeImoveis/#{image.nome}" width="180" height="135" style="border: 5px solid #fff; margin: 5px 5px;"/>
+                        <div class="bairro1">
+                            <p  style="font-size: 13px; font-weight: bold;">#{image.idImovel.endereco.cep.bairro.nome}</p>  
+                            <p  style="font-size: 12px; float: left;">#{image.idImovel.tipoImovel.nome}</p>   <br/>
+                            <p  style="font-size: 12px; ">
+                                <h:form >
+                                    <h:commandLink action="#{siteControle.carregaImovelSelecionado(image.idImovel.id)}" style="font-size: 12px; color: #000; float: left;"> 
+                                        Ver+
+                                    </h:commandLink>
+                                </h:form>
+                            </p>
+                        </div>
+                        <div class="valor1">
+                            <p  style="font-size: 15px; color: orange;">R$#{image.idImovel.valorImovel}</p>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </table>
+            </div>
+
+            #{paginaControle.totalNumberOfEntries} itens
+
+            <!-- The paging buttons -->
+            <h:commandButton value="o" action="#{paginaControle.pageFirst}"
+                             disabled="#{paginaControle.isFirstPage}" />
+            <h:commandButton value="oo" action="#{paginaControle.pagePrevious}"
+                             disabled="#{paginaControle.isFirstPage}" />
+
+            <!-- The paging links -->
+            <ui:repeat var="page" value="#{paginaControle.pages}">
+
+                <h:commandLink value="#{page}" actionListener="#{paginaControle.page}"
+                               rendered="#{page != (paginaControle.pagingPage+1)}" />
+                <h:outputText value="#{page}" escape="false"
+                              rendered="#{page == (paginaControle.pagingPage+1)}" />
+
+            </ui:repeat>
+
+
+            <h:commandButton value=">" action="#{paginaControle.pageNext}"
+                             disabled="#{paginaControle.isLastPage}" />
+            <h:commandButton value=">>" action="#{paginaControle.pageLast}"
+                             disabled="#{paginaControle.isLastPage}" />
+
+            <!-- Set rows per page -->
+            <h:inputText id="pagingNumberPer" value="#{paginaControle.pagingNumberPer}" size="3" maxlength="3" />
+            <h:commandButton value="Set" action="#{paginaControle.pageFirst}" />
+
+
+        </h:form>
+</div>
+    </h:body>
+</html>
+
+<!-- public void remove() {  
+        try {  
+            HibernateDao<Arquivos> hibernateDao = new HibernateDao<Arquivos>(Arquivos.class);  
+            Integer id = arquivo.getId();  
+            arquivo = hibernateDao.getBean(id);  
+            new File(arquivo.getCaminho()).delete();  
+            hibernateDao.deletar(arquivo);  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Arquivo Deletado!", arquivo.getNome()));  
+        } catch (Exception e) {  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", " " + e));  
+        } finally {  
+            arquivo = new Arquivos();  
+            arquivos = new ArrayList<Arquivos>();  
+            file = null;  
+        }  
+    }  -->
+
+
+<!--bean  
+  
+package br.com.projeto.controller;  
+  
+import java.io.File;  
+import java.io.FileInputStream;  
+import java.io.FileNotFoundException;  
+import java.io.FileOutputStream;  
+import java.io.IOException;  
+  
+import java.io.Serializable;  
+import java.util.ArrayList;  
+import java.util.List;  
+  
+import javax.faces.application.FacesMessage;  
+import javax.faces.bean.ManagedBean;  
+import javax.faces.bean.SessionScoped;  
+  
+import javax.faces.context.FacesContext;  
+  
+import org.primefaces.event.FileUploadEvent;  
+import org.primefaces.model.DefaultStreamedContent;  
+import org.primefaces.model.StreamedContent;  
+  
+import br.com.projeto.beans.Arquivos;  
+import br.com.projeto.dao.HibernateDao;  
+  
+@SessionScoped  
+@ManagedBean  
+public class ArquivosBean implements Serializable {  
+    private static final long serialVersionUID = 1L;  
+    private Arquivos arquivo = new Arquivos();  
+    private List<Arquivos> arquivos = new ArrayList<Arquivos>();  
+    @SuppressWarnings("unused")  
+    private StreamedContent file;  
+  
+    public String fileUploadAction(FileUploadEvent event) throws IOException {  
+        try {  
+            arquivo.setNome(event.getFile().getFileName());  
+            byte[] conteudo = event.getFile().getContents();  
+            String caminho = "C:\\arquivos\\" + event.getFile().getFileName();  
+            FileOutputStream fos = new FileOutputStream(caminho);  
+            fos.write(conteudo);  
+            fos.close();  
+            HibernateDao<Arquivos> hibernateDao = new HibernateDao<Arquivos>(Arquivos.class);  
+            arquivo.setCaminho(caminho);  
+            arquivo.setTamanho(conteudo.length);  
+            String nomeArquivo = arquivo.getNome();  
+            int e = nomeArquivo.lastIndexOf(".");  
+            arquivo.setTipo(nomeArquivo.substring(e));  
+            hibernateDao.salvar(arquivo);  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Arquivo Salvo!", arquivo.getNome()));  
+        } catch (Exception e) {  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", " " + e));  
+        } finally {  
+            arquivo = new Arquivos();  
+            arquivos = new ArrayList<Arquivos>();  
+            file = null;  
+        }  
+        return "Arquivos.xhtml";  
+    }  
+  
+    public List<Arquivos> getListArquivos() {  
+        HibernateDao<Arquivos> hibernateDao = new HibernateDao<Arquivos>(Arquivos.class);  
+        arquivos = hibernateDao.getBeans();  
+        return arquivos;  
+    }  
+  
+    public void remove() {  
+        try {  
+            HibernateDao<Arquivos> hibernateDao = new HibernateDao<Arquivos>(Arquivos.class);  
+            Integer id = arquivo.getId();  
+            arquivo = hibernateDao.getBean(id);  
+            new File(arquivo.getCaminho()).delete();  
+            hibernateDao.deletar(arquivo);  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Arquivo Deletado!", arquivo.getNome()));  
+        } catch (Exception e) {  
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", " " + e));  
+        } finally {  
+            arquivo = new Arquivos();  
+            arquivos = new ArrayList<Arquivos>();  
+            file = null;  
+        }  
+    }  
+  
+    public StreamedContent getFile() throws FileNotFoundException {  
+        HibernateDao<Arquivos> hibernateDao = new HibernateDao<Arquivos>(Arquivos.class);  
+        Integer id = arquivo.getId();  
+        arquivo = hibernateDao.getBean(id);  
+        String caminho = arquivo.getCaminho();  
+        FileInputStream stream = new FileInputStream(caminho);  
+        return file = new DefaultStreamedContent(stream, caminho, arquivo.getNome());  
+    }  
+  
+    public void setFile(StreamedContent file) {  
+        this.file = file;  
+    }  
+  
+    public Arquivos getArquivo() {  
+        return arquivo;  
+    }  
+  
+    public void setArquivo(Arquivos arquivo) {  
+        this.arquivo = arquivo;  
+    }  
+  
+    public List<Arquivos> getArquivos() {  
+        return arquivos;  
+    }  
+  
+    public void setArquivos(List<Arquivos> arquivos) {  
+        this.arquivos = arquivos;  
+    }  
+}  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+jsf  
+  
+  
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.prime.com.tr/ui">  
+<h:head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+  
+    <title>Arquivos</title>  
+</h:head>  
+<h:body>  
+    <h:form enctype="multipart/form-data" update=":form:display">  
+        <p:growl id="messages" />  
+        <div align="center">  
+            <p:panel header="Arquivos" style="width:1050px">  
+                <ui:include src="/paginas/Menu.xhtml" />  
+  
+  
+                <p:fileUpload fileUploadListener="#{arquivosBean.fileUploadAction}"  
+                    update="display" multiple="true" />  
+                <br />  
+                ´  
+                  
+                  
+                <p:dataTable var="arquivos" value="#{arquivosBean.listArquivos}"  
+                    widgetVar="arquivosTable"  
+                    emptyMessage="Nenhum arquivos Encontrado Nessas Condições"  
+                    rowStyleClass="#{empty rowIx or rowIx  
+mod 2 ne 0 ? 'even-row' : 'odd-row'}"  
+                    rowIndexVar="rowIx" id="display" rows="30">  
+  
+                    <f:facet name="header">  
+                        <p:outputPanel>  
+                            <h:outputText value="Procurar em todos os campos:" />  
+                            <p:inputText id="globalFilter" onkeyup="arquivosTable.filter()" />  
+                        </p:outputPanel>  
+                    </f:facet>  
+  
+                    <p:column filterBy="#{arquivos.id}" headerText="Código" footerText="Código"  
+                        filterMatchMode="contains" style="width: 40px">  
+                        <h:outputText value="#{arquivos.id}" style="width: 40px" />  
+                    </p:column>  
+  
+                    <p:column filterBy="#{arquivos.nome}" headerText="Descrição"  
+                        footerText="Descrição" filterMatchMode="contains">  
+                        <h:outputText value="#{arquivos.nome}" />  
+                    </p:column>  
+  
+                    <p:column filterBy="#{arquivos.tipo}" headerText="Tipo"  
+                        footerText="Tipo" filterMatchMode="contains" style="width: 40px">  
+                        <h:outputText value="#{arquivos.tipo}" style="width: 40px" />  
+                    </p:column>  
+  
+                    <p:column filterBy="#{arquivos.tamanho}" headerText="Tamanho"  
+                        footerText="Tamanho" filterMatchMode="contains"  
+                        style="width: 140px">  
+                        <h:outputText value="#{arquivos.tamanho}" style="width: 140px" />  
+                    </p:column>  
+  
+  
+  
+                    <p:column style="width:100px">  
+                        <h:panelGrid columns="2" styleClass="actions" cellpadding="2">  
+  
+                            <p:commandButton image="ui-icon-disk" title="Download"  
+                                ajax="false">  
+                                <f:setPropertyActionListener value="#{arquivos.id}"  
+                                    target="#{arquivosBean.arquivo.id}" />  
+                                <p:fileDownload value="#{arquivosBean.file}" />  
+                            </p:commandButton>  
+  
+                            <p:commandButton image="ui-icon-trash" title="Excluir"  
+                            onclick="confirmation.show()">  
+                            <f:setPropertyActionListener value="#{arquivos.id}"  
+                                    target="#{arquivosBean.arquivo.id}" />  
+                        </p:commandButton>  
+                        </h:panelGrid>  
+                    </p:column>  
+                </p:dataTable>  
+  
+<p:confirmDialog id="confirmDialog" message="Confirma Exclusão?"  
+            severity="alert" widgetVar="confirmation">  
+  
+            <p:commandButton id="confirm" value="Sim" update="display, messages"  
+                oncomplete="confirmation.hide()"  
+                actionListener="#{arquivosBean.remove}">  
+  
+            </p:commandButton>  
+            <p:commandButton id="decline" value="Não"  
+                onclick="confirmation.hide()" type="button" />  
+        </p:confirmDialog>  
+  
+                <style>  
+.ui-datatable .ui-datatable-data .even-row td {  
+    background-color: #fcefa1;  
+    border-right: solid 0px #4e6769;  
+}  
+  
+.ui-datatable .ui-datatable-data .odd-row td {  
+    background-color: #f7f7f7;  
+    border-right: solid 0px #4e6769;  
+}  
+</style>  
+            </p:panel>  
+        </div>  
+    </h:form>  
+</h:body>  
+</html>  -->
