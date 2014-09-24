@@ -24,7 +24,7 @@
 
     </h:head>
     <h:body>
-        <f:view encoding="ISO-8859-1"> 
+<!--        <f:view encoding="ISO-8859-1"> -->
             <div id="principal">
                 <p:growl id="messages"/>   
                 <p:ajaxStatus  onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
@@ -65,13 +65,13 @@
                                 <h:outputText value="Pesquisar Imovel"/>
                             </h:panelGrid>
                             <h:panelGrid columns="6">                           
-                                <h:selectOneMenu id="IDCidade" style="font-size: 15px;" class="select" valueChangeListener="#{imovelControle.pesquiBairro2}" immediate="true" required="true" requiredMessage="Cidade Obrigatoria !!">
+                                <h:selectOneMenu id="IDCidade" style="font-size: 15px;" class="select" valueChangeListener="#{imovelControle.pesquiBairro2}"   required="true" requiredMessage="Cidade Obrigatoria !!">
                                     <f:selectItem itemValue="" itemLabel="Cidade"/>
-                                    <f:selectItem itemValue="Florianopolis" itemLabel="Florianópolis"/>
                                     <f:selectItem itemValue="Biguaçu" itemLabel="Biguaçu"/>
+                                    <f:selectItem itemValue="Florianopolis" itemLabel="Florianópolis"/>
                                     <f:selectItem itemValue="Palhoça" itemLabel="Palhoça"/>
                                     <f:selectItem itemValue="São Jose" itemLabel="São Jose"/>
-                                    <f:ajax event="change" render="bairroFiltro" />
+                                    <f:ajax event="change" render="bairroFiltro" execute="@this" />
                                 </h:selectOneMenu>
                                 <h:selectOneMenu id="bairroFiltro" style="font-size: 15px; width: 100px;" class="select" value="#{siteControle.bairroFiltro.id}" required="true" requiredMessage="Bairro obrigatorio !!">
                                     <f:selectItem itemValue="" itemLabel="Bairro"/>
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             </div>
-        </f:view> 
+<!--        </f:view> -->
     </h:body>
 </html>
   <!--                <div id="menu">
