@@ -22,12 +22,8 @@
             <ui:define name="center">
                 <div id="imovelConteudo" >
                     <div id="conteudoImovel">
-                        <h3 class="font">Informações do Imovel</h3>
-<!--                        <p:outputLabel id="valorImovel" value=" #{siteControle.imovel.valorImovel}">
-                            <f:convertNumber pattern="#,##0.00"></f:convertNumber>  
-                            <p:ajax update="valorImovel" process="valorImovel" event="onComplete" />
-                        </p:outputLabel> -->
-                        <p class="font">Valor R$:   #{siteControle.imovel.valorImovel} </p>
+                        <h3 class="font">Informações do Imovel</h3>                       
+                        <p class="font">Valor R$:   #{siteControle.imovel.valorFormatado} </p>
                         <p:separator style="width: 80%; height: 0px; margin-top: 0px; "/>
 
                         <c:if test="#{siteControle.imovel.ndormitorios != null}">
