@@ -12,6 +12,7 @@ import br.com.imobiliaria.entidade.Imagens;
 import br.com.imobiliaria.entidade.Imovel;
 import br.com.imobiliaria.entidade.TipoImovel;
 import br.com.imobiliaria.util.VLHInfo;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -171,12 +172,20 @@ public class SiteControle {
         siteDao = new SiteDaoImp();
         imagens = null;
         List<Imovel> imov = new ArrayList();
+        List<Imagens> imgs = new ArrayList();
         imagens = new ArrayList();
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        double valorFormat;
         try {
             imov = siteDao.listar();
             for (Imovel imo : imov) {
-                imagens.add(siteDao.pesqeImg(imo.getId()));
+                imgs.add(siteDao.pesqeImg(imo.getId()));
             }
+            for (Imagens img : imgs) {
+                img.getIdImovel().setValorFormatado(df.format(img.getIdImovel().getValorImovel()));
+                imagens.add(img);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(SiteControle.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,11 +195,12 @@ public class SiteControle {
     public String carregaImovelSelecionado(Long id) {
         siteDao = new SiteDaoImp();
         clickDao = new ClickDaoImp();
-        imovel = null;
+        imovel = null;       
+        DecimalFormat df = new DecimalFormat("#,###.00");
         try {
             imovel = siteDao.pesquisaImovelSelecionado(id);
             click = clickDao.pesquisaClick(id);
-
+            imovel.setValorFormatado(df.format(imovel.getValorImovel()));
             if (click.getId() == null) {
                 click.setImovel(imovel);
                 click.setContador(1);
@@ -225,7 +235,6 @@ public class SiteControle {
     public String pesquisaFiltro() {
         siteDao = new SiteDaoImp();
         try {
-
             imagensFiltro = siteDao.pesquisaImovelSite(bairroFiltro.getId(), tipoImovelFiltro.getId(), imovelFiltro.getNdormitorios(), imovelFiltro.getValorImovel());
             //bairroFiltro.getNome(), tipoImovelFiltro.getId(), imovelFiltro.getNdormitorios(), imovelFiltro.getValorImovel()
         } catch (Exception ex) {
@@ -271,31 +280,5 @@ public class SiteControle {
         } catch (Exception ex) {
             Logger.getLogger(SiteControle.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-//    public static void main(String[] args) throws Exception {
-//        SiteDao sdao = new SiteDaoImp();
-//        List<Imagens> imagens = new ArrayList();
-//        for (Imovel imo : sdao.listar()) {
-//
-//            System.out.println("id  " + imo.getId());
-//            imagens.add(sdao.pesqeImg(imo.getId()));
-//        }
-//        for (Imagens imag : imagens) {
-//            System.out.println("id imovel " + imag.getIdImovel().getId());
-//            System.out.println("nome dai magens " + imag.getNome());
-//        }
-//
-////        String bairro2 = "Barra da Lagoa";
-////        String tipo = "Casa";
-////        String nDormotorios = "";
-////        List<Imagens> img = sdao.pesquisaImovelSite(bairro2, tipo, nDormotorios, "");
-////
-////        for (Imagens imagens : img) {
-////            System.out.println("imagens " + imagens.getNome());
-////            System.out.println("imagens " + imagens.getStatus());
-////            System.out.println("imovel " + imagens.getIdImovel().getNdormitorios());
-////            System.out.println("Endereco " + imagens.getIdImovel().getEndereco().getCep().getLogradouro());
-////        }
-//    }
 }
