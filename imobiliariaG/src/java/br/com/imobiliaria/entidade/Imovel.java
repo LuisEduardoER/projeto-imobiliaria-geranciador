@@ -43,6 +43,15 @@ public class Imovel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
+    private String valorFormatado;
+
+    public String getValorFormatado() {
+        return valorFormatado;
+    }
+
+    public void setValorFormatado(String valorFormatado) {
+        this.valorFormatado = valorFormatado;
+    }
 
     public String getStatusImovel() {
         return statusImovel;
