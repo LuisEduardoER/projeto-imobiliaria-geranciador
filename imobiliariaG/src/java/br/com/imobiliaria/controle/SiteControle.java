@@ -234,9 +234,16 @@ public class SiteControle {
 
     public String pesquisaFiltro() {
         siteDao = new SiteDaoImp();
+        List<Imagens> imgs ;
+        imagensFiltro = new ArrayList();
+        DecimalFormat df = new DecimalFormat("#,###.00");
         try {
-            imagensFiltro = siteDao.pesquisaImovelSite(bairroFiltro.getId(), tipoImovelFiltro.getId(), imovelFiltro.getNdormitorios(), imovelFiltro.getValorImovel());
+             imgs = siteDao.pesquisaImovelSite(bairroFiltro.getId(), tipoImovelFiltro.getId(), imovelFiltro.getNdormitorios(), imovelFiltro.getValorImovel());
             //bairroFiltro.getNome(), tipoImovelFiltro.getId(), imovelFiltro.getNdormitorios(), imovelFiltro.getValorImovel()
+            for (Imagens img : imgs) {
+                img.getIdImovel().setValorFormatado(df.format(img.getIdImovel().getValorImovel()));
+                imagensFiltro.add(img);
+            }
         } catch (Exception ex) {
             Logger.getLogger(SiteControle.class.getName()).log(Level.SEVERE, null, ex);
         }
