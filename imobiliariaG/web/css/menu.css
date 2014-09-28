@@ -23,9 +23,11 @@ and open the template in the editor.
   box-sizing: border-box;
 }
 #cssmenu {
-  width: auto;
+  width:540px;
+  margin-top:60px;
   font-family: Helvetica, Arial, sans-serif;
   color: #ffffff;
+  float: right;
 }
 #cssmenu.align-right ul li {
   float: right;

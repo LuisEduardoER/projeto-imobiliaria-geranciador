@@ -13,7 +13,7 @@ body:before {
 
 body{
     margin: 0px auto; 
-    padding:0px;
+    padding:10px 0px 0px 0px;
     font-family:"Open Sans", Arial, sans-serif;
     /*background: url('../imagens/fundo.png') #bfdce4  repeat-x 0px 0px;*/
     background: url('../imagens/st.png');
@@ -25,6 +25,7 @@ body{
     width: 900px;
     height: auto;
     text-align:center;
+    background: #fff;
 }
 
 .img {
@@ -55,26 +56,7 @@ body{
     display: inline;
 }
 
-.select {
-    -webkit-appearance: button;
-    -webkit-border-radius: 2px;
-    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    -webkit-padding-end: 20px;
-    -webkit-padding-start: 2px;
-    -webkit-user-select: none;
-    background: url('../imagens/select_arrow.gif'), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-    background-position: center right;
-    background-repeat: no-repeat;
-    border: 1px solid #AAA;
-    color: #555;
-    font-size: inherit;
-    margin: 0;
-    overflow: hidden;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 
 #vitrine{       
     height: 480px;
@@ -126,79 +108,6 @@ body{
     box-shadow: 1px 2px 6px rgba(0,0,0,0.5);
 }
 
-#menu {
-    width: 100%;
-    margin:0 auto;
-    border: 1px solid #222;
-    background-color: #111;
-    background-image: linear-gradient(#444, #111);
-    border-radius: 6px;
-    box-shadow: 0 1px 1px #777;
-    clear: both;
-}
-
-#menu, #menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#menu:before,
-#menu:after {
-    content: "";
-    display: table;
-}
-
-#menu:after {
-    clear: both;
-}
-
-#menu {
-    zoom:1;
-}
-
-#menu li {
-    float: left;
-    border-right: 1px solid #222;
-    box-shadow: 1px 0 0 #444;
-    position: relative;
-}
-
-#menu a {
-    float: left;
-    padding: 12px 43px;
-    color: #fff;
-    text-transform: uppercase;
-    font: bold 12px Arial, Helvetica;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #000;
-}
-
-#menu li:hover > a {
-    color: #019ad2;
-}
-
-#logo {	
-    padding: 0px;	
-    float: left;
-    width:150px;
-    height: 150px;
-    background: url('../imagens/logo.png') no-repeat;
-}
-
-#fotoContato{
-   width: 300px;
-   height: 100px;
-   margin-top: 30px;
-   background: url('../imagens/contato.png');
-   float: right;
-    
-}
-
-#logoContato{
-    width: 100%;
-    height: 150px;
-}
 
 #conheca{
     height: auto;
@@ -207,7 +116,7 @@ body{
 }
 #conheca p{
     margin: 5px 5px;
-    
+
 }
 
 #mapa{
@@ -304,7 +213,7 @@ body{
     width: 185px; 
     height: 20px;
     /*background: #fff;*/
-   
+
 }
 #cont{
     margin: 0px 0px 5px;
@@ -315,8 +224,8 @@ body{
     /*background: #9F6000;*/
 }
 #cont p{
-      margin: 0px 0px 5px;
-    
+    margin: 0px 0px 5px;
+
 }
 .valor1{
     float: right;
@@ -368,20 +277,77 @@ body{
 
     background: #fff;
 }
+/*Banner*/
+#logoContato{
+   
+    width:900px;
+    margin:auto ;
+    height: 150px;
+    background: #FEEFB3;
+}
+.logo {	
+    padding: 0px;	
+    float: left;
+    width:150px;
+    height: 150px;
+    background: url('../imagens/logo.png') no-repeat;
+}
+/*.fotoContato{
+    width: 300px;
+    height: 100px;
+    margin-top: 30px;
+    background: url('../imagens/contato.png');
+    float: right;
 
+}*/
+/*Fimm Banner*/
+/*Menu de pesquisa de Imoveis*/
+#menuPesquisaFiltroImoveis{
+    height: 85px; 
+    width: 900px;
+     background: #1691d8;
+}
 .panelCodigo{
     width:200px; 
-    height: 80px; 
-    background: url('../imagens/fundoMenu.jpg');
-    float:left;
+    height: 40px; 
+    /*background: url('../imagens/fundoMenu.jpg');*/
+    float:left;   
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 .panelFiltro{
-
     width:680px;
-    height: 80px;
-    background: url('../imagens/fundoMenu.jpg');
+    height: 60px;
+   
+    /*background: url('../imagens/fundoMenu.jpg');*/
     float:left;
+    font-size: 15px;
+    font-family: Helvetica, Arial, sans-serif;
 }
+.select {
+    -webkit-appearance: button;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -webkit-user-select: none;
+    background: url('../imagens/select_arrow.gif'), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    color: #555;
+    /*font-size: inherit;*/
+    font-size: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 110px;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* FIM*/
 .erroLogin{    
     border: 1px solid;
     margin: 10px 0px 0px 5px;
@@ -446,3 +412,54 @@ body{
     margin:10px 5px 0px 0px;
     opacity:0.75;
 }
+/*#menu {
+    width: 100%;
+    margin:0 auto;
+    border: 1px solid #222;
+    background-color: #111;
+    background-image: linear-gradient(#444, #111);
+    border-radius: 6px;
+    box-shadow: 0 1px 1px #777;
+    clear: both;
+}
+
+#menu, #menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#menu:before,
+#menu:after {
+    content: "";
+    display: table;
+}
+
+#menu:after {
+    clear: both;
+}
+
+#menu {
+    zoom:1;
+}
+
+#menu li {
+    float: left;
+    border-right: 1px solid #222;
+    box-shadow: 1px 0 0 #444;
+    position: relative;
+}
+
+#menu a {
+    float: left;
+    padding: 12px 43px;
+    color: #fff;
+    text-transform: uppercase;
+    font: bold 12px Arial, Helvetica;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a {
+    color: #019ad2;
+}*/
