@@ -47,23 +47,12 @@
             </p:dialog>
             <!--<hr></hr>--> 
             <div id="menuPesquisaFiltroImoveis">
-                <h:form id="formCodigo">
-                    <h:panelGrid styleClass="panelCodigo">
-                        <h:panelGrid columns="1">
-                            <h:outputText value="Pesquisa por Código"/>                            
-                        </h:panelGrid>
-                        <h:panelGrid columns="2">
-                            <p:inputText size="10"id="pesquisaProCodigo" value="#{siteControle.imovelFiltro.codigo}"/>
-                             <p:watermark for="pesquisaProCodigo" value="Verifique se o cliente ja á cadastrado ->" id="watermark" /> 
-                            <p:commandButton action="#{siteControle.pesquisaCodigoImovel()}" ajax="false" title="Pesquisar" style="width: 30px; height: 30px;" icon="ui-icon-search"/> 
-                        </h:panelGrid>
-                    </h:panelGrid>
-                </h:form>
+               
                 <h:form id="formFiltro">
-                    <h:panelGrid styleClass="panelFiltro"><!--
+                    <h:panelGrid styleClass="panelFiltro">
                         <h:panelGrid columns="1">
-                            <h:outputText value="Pesquisar Imovel"/>
-                        </h:panelGrid>-->
+                            <h:outputText value="Pesquise seu imóvel"/>
+                        </h:panelGrid>
                         <h:panelGrid columns="6">     
                             
                             <h:selectOneMenu id="IDCidade" class="select" valueChangeListener="#{imovelControle.pesquiBairro2}"   required="true" requiredMessage="Cidade Obrigatoria !!">
@@ -105,6 +94,18 @@
                                 <f:selectItem itemValue="2000000" itemLabel="2.000.000,00"/>
                             </h:selectOneMenu>
                             <p:commandButton action="#{siteControle.pesquisaFiltro()}" ajax="false" title="Pesquisar" style="width: 30px; height: 30px;" icon="ui-icon-search"/> 
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+                 <h:form id="formCodigo">
+                    <h:panelGrid styleClass="panelCodigo">
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Pesquise por Código"/>                            
+                        </h:panelGrid>
+                        <h:panelGrid columns="3">
+                            <p:inputText size="12" id="pesquisaProCodigo" value="#{siteControle.imovelFiltro.codigo}"/>
+                             <p:watermark for="pesquisaProCodigo" value="Pesquisa Código" id="watermark" /> 
+                            <p:commandButton action="#{siteControle.pesquisaCodigoImovel()}" ajax="false" title="Pesquisar" style="width: 30px; height: 30px;" icon="ui-icon-search"/> 
                         </h:panelGrid>
                     </h:panelGrid>
                 </h:form>
