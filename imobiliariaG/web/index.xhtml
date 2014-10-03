@@ -25,19 +25,21 @@
     </h:head>
     <h:body>
         <!--        <f:view encoding="ISO-8859-1"> -->
-        <div id="logoContato">
-            <div class="logo" > </div>
-            <!--                    <div class="fotoContato">
-                                </div>-->
-            <div id="cssmenu">
-                <ul>
-                    <li class="active"><a href="index.faces"><span>Home</span></a></li>
-                    <li><a href="conheca.faces"><span>Quem somos</span></a></li>
-                    <li><a href="localizacao.faces"><span>Localização</span></a></li>
-                    <li class="last"><a href="contato.faces"><span>Contato</span></a></li>
-                </ul>
-            </div>
-        </div>              
+        <div id="bannerFundo">
+            <div id="logoContato">
+                <div class="logo" > </div>
+                <!--                    <div class="fotoContato">
+                                    </div>-->
+                <div id="cssmenu">
+                    <ul>
+                        <li class="active"><a href="index.faces"><span>Home</span></a></li>
+                        <li><a href="conheca.faces"><span>Quem somos</span></a></li>
+                        <li><a href="localizacao.faces"><span>Localização</span></a></li>
+                        <li class="last"><a href="contato.faces"><span>Contato</span></a></li>
+                    </ul>
+                </div>
+            </div>    
+        </div>
         <div id="principal">
             <p:growl id="messages"/>   
             <p:ajaxStatus  onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
@@ -47,14 +49,14 @@
             </p:dialog>
             <!--<hr></hr>--> 
             <div id="menuPesquisaFiltroImoveis">
-               
+
                 <h:form id="formFiltro">
                     <h:panelGrid styleClass="panelFiltro">
                         <h:panelGrid columns="1">
                             <h:outputText value="Pesquise seu imóvel"/>
                         </h:panelGrid>
                         <h:panelGrid columns="6">     
-                            
+
                             <h:selectOneMenu id="IDCidade" class="select" valueChangeListener="#{imovelControle.pesquiBairro2}"   required="true" requiredMessage="Cidade Obrigatoria !!">
                                 <f:selectItem itemValue="" itemLabel="Cidade"/>
                                 <f:selectItem itemValue="Biguaçu" itemLabel="Biguaçu"/>
@@ -97,14 +99,14 @@
                         </h:panelGrid>
                     </h:panelGrid>
                 </h:form>
-                 <h:form id="formCodigo">
+                <h:form id="formCodigo">
                     <h:panelGrid styleClass="panelCodigo">
                         <h:panelGrid columns="1">
                             <h:outputText value="Pesquise por Código"/>                            
                         </h:panelGrid>
                         <h:panelGrid columns="3">
                             <p:inputText size="12" id="pesquisaProCodigo" value="#{siteControle.imovelFiltro.codigo}"/>
-                             <p:watermark for="pesquisaProCodigo" value="Pesquisa Código" id="watermark" /> 
+                            <p:watermark for="pesquisaProCodigo" value="Pesquisa Código" id="watermark" /> 
                             <p:commandButton action="#{siteControle.pesquisaCodigoImovel()}" ajax="false" title="Pesquisar" style="width: 30px; height: 30px;" icon="ui-icon-search"/> 
                         </h:panelGrid>
                     </h:panelGrid>
