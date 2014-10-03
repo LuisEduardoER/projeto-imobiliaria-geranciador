@@ -278,19 +278,27 @@ body{
     background: #fff;
 }
 /*Banner*/
-#logoContato{
-   
-    width:900px;
+#bannerFundo{
+    width: 1015px;
+    height:190px;
+    background: url('../imagens/bannerFundo.png') no-repeat ;
     margin:auto ;
-    height: 150px;
-    /*background: #FEEFB3;*/
+    padding: 0px 0px;
+}
+#logoContato{
+    /*margin-top: 50px;*/
+    width:900px;
+    height: 125px;
+    margin:auto;
+    padding:60px 0px 0px 0px;
+    /*background:#FEEFB3;*/
 }
 .logo {	
     padding: 0px;	
     float: left;
     width:150px;
-    height: 150px;
-    background: url('../imagens/logo.png') no-repeat;
+    height: 130px;
+    background: url('../imagens/logo.png') no-repeat ;
 }
 /*.fotoContato{
     width: 300px;
@@ -305,9 +313,9 @@ body{
 #menuPesquisaFiltroImoveis{
     height: 85px; 
     width: 900px;
-     /*background: #1691d8;*/
-     /*background: #0B4669 0% #1275AE 50%;*/
-     /*background: #436EEE;*/
+    /*background: #1691d8;*/
+    /*background: #0B4669 0% #1275AE 50%;*/
+    /*background: #436EEE;*/
 }
 .panelCodigo{
     width:200px; 
@@ -320,7 +328,7 @@ body{
 .panelFiltro{
     width:680px;
     height: 60px;
-   
+
     /*background: url('../imagens/fundoMenu.jpg');*/
     float:left;
     font-size: 15px;
