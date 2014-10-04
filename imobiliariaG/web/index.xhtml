@@ -47,16 +47,30 @@
                       draggable="false" closable="false" >  
                 <p:graphicImage value="../imagens/carregando.gif" />  
             </p:dialog>
-            <!--<hr></hr>--> 
-            <div id="menuPesquisaFiltroImoveis">
-
+            <div id="banner">
+                <div id='coin-slider'>
+                    <a href="#"> 
+                        <img  src="../imagens/banner.jpg" style="width:900px; height:300px;"/>
+                    </a>
+                    <c:forEach var="image" items="#{imovelControle.imagensGaleria}">
+                        <a href="#"> 
+                            <p:graphicImage value="../imagensDeImoveis/#{image.nome}" style="width:900px; height:300px;"/>
+                            <span >
+                                <p>#{image.idImovel.descricao}</p>
+                            </span>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+            <hr style="background: #000;" width="99%" size="3"></hr> 
+            <div id="menuPesquisaFiltroImoveis">                  
+                <div class="imgPesImov"></div>
                 <h:form id="formFiltro">
                     <h:panelGrid styleClass="panelFiltro">
                         <h:panelGrid columns="1">
                             <h:outputText value="Pesquise seu imóvel"/>
                         </h:panelGrid>
-                        <h:panelGrid columns="6">     
-
+                        <h:panelGrid columns="6">    
                             <h:selectOneMenu id="IDCidade" class="select" valueChangeListener="#{imovelControle.pesquiBairro2}"   required="true" requiredMessage="Cidade Obrigatoria !!">
                                 <f:selectItem itemValue="" itemLabel="Cidade"/>
                                 <f:selectItem itemValue="Biguaçu" itemLabel="Biguaçu"/>
@@ -111,25 +125,9 @@
                         </h:panelGrid>
                     </h:panelGrid>
                 </h:form>
-            </div>
-            <hr></hr>
-            <ui:insert name="center">
-                <div id="banner">
-                    <div id='coin-slider'>
-                        <a href="#"> 
-                            <img  src="../imagens/banner.jpg" style="width:900px; height:300px;"/>
-                        </a>
-                        <c:forEach var="image" items="#{imovelControle.imagensGaleria}">
-                            <a href="#"> 
-                                <p:graphicImage value="../imagensDeImoveis/#{image.nome}" style="width:900px; height:300px;"/>
-                                <span >
-                                    <p>#{image.idImovel.descricao}</p>
-                                </span>
-                            </a>
-                        </c:forEach>
-                    </div>
-                </div>
-                <hr></hr>
+            </div>           
+            <hr style="background: #000;" width="99%" size="3"></hr>
+            <ui:insert name="center">              
                 <div id="vitrineN">
                     <c:forEach var="image" items="#{siteControle.imagens}" >
                         <div class="imoveisCentro1">
@@ -138,8 +136,9 @@
                                 <p  style="font-size: 13px; font-weight: bold;">#{image.idImovel.endereco.cep.bairro.nome}</p>  
                             </div>
                             <div id="cont">
-                                <p  style="font-size: 12px; float: left;">#{image.idImovel.tipoImovel.nome}</p> <br />  
-                                <p  style="font-size: 12px; ">
+                                <p  style="font-size: 12px; float: left; margin: 0px 0px;">#{image.idImovel.tipoImovel.nome}</p> 
+                                <p  style="font-size: 12px; float: right; margin: 0px -80px 0px 0px;">Código:#{image.idImovel.codigo}</p> <br />  
+                                <p  style="font-size: 12px;  ">
                                     <h:form >
                                         <h:commandLink action="#{siteControle.carregaImovelSelecionado(image.idImovel.id)}" style="font-size: 12px; color: #000; float: left;"> 
                                             Ver+
