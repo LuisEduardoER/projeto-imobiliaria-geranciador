@@ -19,9 +19,9 @@
     box-sizing: border-box;
 }
 #cssmenu {
-    -webkit-column-width: 471.09px ;
+    -webkit-column-width: 471px ;
     -moz-column-width: 460px;
-    width:460px;
+    width:471px;
     margin-top:90px;
     font-family: Helvetica, Arial, sans-serif;
     color: #ffffff;
