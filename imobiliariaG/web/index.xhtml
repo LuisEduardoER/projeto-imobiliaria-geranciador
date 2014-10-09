@@ -50,11 +50,11 @@
             <div id="banner">
                 <div id='coin-slider'>
                     <a href="#"> 
-                        <img  src="../imagens/banner.jpg" style="width:900px; height:300px;"/>
+                        <img  src="imagens/banner.jpg" style="width:900px; height:300px;"/>
                     </a>
                     <c:forEach var="image" items="#{imovelControle.imagensGaleria}">
                         <a href="#"> 
-                            <p:graphicImage value="../imagensDeImoveis/#{image.nome}" style="width:900px; height:300px;"/>
+                            <p:graphicImage value="imagensDeImoveis/#{image.nome}" style="width:900px; height:300px;"/>
                             <span >
                                 <p>#{image.idImovel.descricao}</p>
                             </span>
@@ -131,7 +131,7 @@
                 <div id="vitrineN">
                     <c:forEach var="image" items="#{siteControle.imagens}" >
                         <div class="imoveisCentro1">
-                            <p:graphicImage value="../imagensDeImoveis/#{image.nome}" />
+                            <p:graphicImage value="imagensDeImoveis/#{image.nome}" />
                             <div class="bairro1">
                                 <p  style="font-size: 13px; font-weight: bold;">#{image.idImovel.endereco.cep.bairro.nome}</p>  
                             </div>
