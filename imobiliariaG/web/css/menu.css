@@ -21,7 +21,7 @@
 #cssmenu {
     -webkit-column-width: 471px ;
     -moz-column-width: 460px;
-    width:471px;
+    /*width:471px;*/
     margin-top:90px;
     font-family: Helvetica, Arial, sans-serif;
     color: #ffffff;
