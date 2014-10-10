@@ -1,6 +1,8 @@
 #barra{
     background: -moz-linear-gradient(top,#000,#ccc);
-    background: -webkit-gradient(linear, right bottom,right top, from(#333), to(#000));
+    /*background: -moz-linear-gradient(linear, right bottom,right top, from(#333), to(#000));*/
+    /*background: -webkit-gradient(linear, right bottom,right top, from(#333), to(#000));*/
+    background: -webkit-linear-gradient(top,#000,#ccc);
     width: 100%;
     height: 40px;
 }
