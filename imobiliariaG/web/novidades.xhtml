@@ -19,7 +19,7 @@
                     <div id="vitrineN">
                         <c:forEach var="image" items="#{siteControle.imagens}">
                             <div class="imoveisCentro1">
-                                <p:graphicImage value="../imagensDeImoveis/#{image.nome}" width="100" height="100"/>
+                                <p:graphicImage value="imagensDeImoveis/#{image.nome}" width="100" height="100"/>
                                 <div class="bairro1">
                                     <p  style="font-size: 13px; font-weight: bold;">#{image.idImovel.endereco.cep.bairro.nome}</p>  
                                     <p  style="font-size: 12px;">#{image.idImovel.tipoImovel.nome}</p>    
