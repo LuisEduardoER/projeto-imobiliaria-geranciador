@@ -17,7 +17,7 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#coin-slider').coinslider({width: 900, height: 300, sph: 2, effect: 'random', navigation: true,
+                $("#coin-slider").coinslider({width: 900, height: 300, sph: 2, effect: 'random', navigation: true,
                     links: false, delay: 2000, sDelay: 150});
             });
         </script>
@@ -45,10 +45,10 @@
             <p:ajaxStatus  onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
             <p:dialog modal="true" widgetVar="statusDialog"   
                       draggable="false" closable="false" >  
-                <p:graphicImage value="../imagens/carregando.gif" />  
+                <p:graphicImage value="imagens/carregando.gif" />  
             </p:dialog>
             <div id="banner">
-                <div id='coin-slider'>
+                <div id="coin-slider">
                     <a href="#"> 
                         <img  src="imagens/banner.jpg" style="width:900px; height:300px;"/>
                     </a>
