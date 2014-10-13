@@ -6,7 +6,7 @@ package br.com.imobiliaria.dao;
 
 import br.com.imobiliaria.entidade.Imagens;
 import br.com.imobiliaria.entidade.Imovel;
-import br.com.imobiliaria.util.VLHInfo;
+
 import java.util.List;
 import org.hibernate.Query;
 
