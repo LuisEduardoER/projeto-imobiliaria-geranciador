@@ -27,12 +27,13 @@
 
                         <c:forEach var="image" items="#{siteControle.imagensFiltro}" >
                             <div class="imoveisCentro1">
-                                <p:graphicImage value="../imagensDeImoveis/#{image.nome}" />
+                                <p:graphicImage value="imagensDeImoveis/#{image.nome}" />
                                 <div class="bairro1">
                                     <p  style="font-size: 13px; font-weight: bold;">#{image.idImovel.endereco.cep.bairro.nome}</p>  
                                 </div>
                                 <div id="cont">
-                                    <p  style="font-size: 12px; float: left;">#{image.idImovel.tipoImovel.nome}</p> <br />  
+                                    <p  style="font-size: 12px; float: left; margin: 0px 0px;">#{image.idImovel.tipoImovel.nome}</p> 
+                                    <p  style="font-size: 12px; float: right; margin: 0px -80px 0px 0px;">Código:#{image.idImovel.codigo}</p> <br />  
                                     <p  style="font-size: 12px; ">
                                         <h:form >
                                             <h:commandLink action="#{siteControle.carregaImovelSelecionado(image.idImovel.id)}" style="font-size: 12px; color: #000; float: left;"> 
