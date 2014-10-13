@@ -119,7 +119,7 @@
                             <h:outputText value="Pesquise por Código"/>                            
                         </h:panelGrid>
                         <h:panelGrid columns="3">
-                            <p:inputText size="12" id="pesquisaProCodigo" value="#{siteControle.imovelFiltro.codigo}"/>
+                            <p:inputText size="12" id="pesquisaProCodigo" value="#{siteControle.imovelFiltro.codigo}" required="true" requiredMessage="Código do imovel obrigatorio !!"/>
                             <p:watermark for="pesquisaProCodigo" value="Pesquisa Código" id="watermark" /> 
                             <p:commandButton action="#{siteControle.pesquisaCodigoImovel()}" ajax="false" title="Pesquisar" style="width: 30px; height: 30px;" icon="ui-icon-search"/> 
                         </h:panelGrid>
