@@ -171,15 +171,16 @@ public class SiteControle {
     public String carregaNoidades() {
         siteDao = new SiteDaoImp();
         imagens = null;
-        List<Imovel> imov = new ArrayList();
+        List<Long> imov = new ArrayList();
         List<Imagens> imgs = new ArrayList();
         imagens = new ArrayList();
         DecimalFormat df = new DecimalFormat("#,###.00");
         double valorFormat;
         try {
-            imov = siteDao.listar();
-            for (Imovel imo : imov) {
-                imgs.add(siteDao.pesqeImg(imo.getId()));
+            imov = siteDao.listarImoveisNovidades();
+            for (Long imo :imov) {
+              
+                imgs.add(siteDao.pesqeImg(imo));
             }
             for (Imagens img : imgs) {
                 img.getIdImovel().setValorFormatado(df.format(img.getIdImovel().getValorImovel()));
