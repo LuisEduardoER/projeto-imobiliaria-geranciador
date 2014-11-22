@@ -33,8 +33,8 @@ public class SiteDaoImp extends BaseDaoImp<Imovel, Long> implements SiteDao {
     @Override
     public Imagens pesqeImg(Long id) throws Exception {
         session = FabricaConexao.abreSessao();
-        Query query = session.createQuery("SELECT i FROM Imagens i WHERE i.idImovel.id = :valor and i.status = :valorStatus");
-        //SELECT i FROM Imagens i JWHERE i.idImovel.id = :valor and i.status = :valorStatus
+        Query query = session.createQuery("SELECT i FROM Imagens i JOIN i.idImovel JOIN i.idImovel.tipoImovel JOIN i.idImovel.endereco JOIN i.idImovel.endereco.cep JOIN i.idImovel.endereco.cep.bairro WHERE i.idImovel.id = :valor and i.status = :valorStatus");
+        //SELECT i FROM Imagens i JWHERE i.idImovel.id = :valor and i.status = :valorStatus  .caminho,i.id,i.idImovel.id,i.idImovel.valorFormatado,i.idImovel.codigo,i.idImovel.tipoImovel.nome,i.idImovel.endereco.cep.bairro.nome 
         String status = "capa";
         query.setLong("valor", id);
         query.setString("valorStatus", status);
@@ -198,5 +198,13 @@ public class SiteDaoImp extends BaseDaoImp<Imovel, Long> implements SiteDao {
         List<Imagens> imagens = query.list();
         session.close();
         return imagens;
+    }
+
+    @Override
+    public List<Long> listarImoveisNovidades() throws Exception {
+        session = FabricaConexao.abreSessao();
+        Query query = session.createQuery("SELECT i.id FROM Imovel i ORDER BY i.id DESC LIMIT 8");
+        List<Long> imoveis = query.list();
+        return imoveis;
     }
 }
