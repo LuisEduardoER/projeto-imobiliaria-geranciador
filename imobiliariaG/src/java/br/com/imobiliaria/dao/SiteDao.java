@@ -30,4 +30,6 @@ public interface SiteDao extends BaseDao<Imovel, Long> {
     Imagens salvaStatusGaleria(Long idImovel, Long idImagen) throws Exception;
 
     List<Imagens> pesquisaGaleria() throws Exception;
+    
+    List<Long> listarImoveisNovidades() throws Exception;
 }

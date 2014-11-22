@@ -18,7 +18,7 @@
                         <p:commandButton value="Voltar" onclick="javascript:window.history.go(-1)"/>
                         <h:panelGrid columns="2" id="update">
                             <h:outputText value="Adicionar foto: "/>    
-                            <p:fileUpload fileUploadListener="#{imovelControle.fileUploadAction}" update="gridImovell" auto="false" multiple="false" /> 
+                            <p:fileUpload fileUploadListener="#{imovelControle.fileUploadAction}" update="gridImovell" label="Procurar imagem" cancelLabel="Cancelar" auto="false" multiple="false" /> 
                         </h:panelGrid>
                     </p:fieldset>
                     <p:separator style="width: 98%; height: 0px; margin-top: 10px; "/>
